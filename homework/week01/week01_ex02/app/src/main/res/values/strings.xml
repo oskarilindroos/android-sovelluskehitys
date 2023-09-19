@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SimpleApp</string>
+    <string name="click_me">Click Me</string>
+    <string name="hello_from_code">Hello from code</string>
+    <string name="button_clicked">Button Clicked</string>
+</resources>

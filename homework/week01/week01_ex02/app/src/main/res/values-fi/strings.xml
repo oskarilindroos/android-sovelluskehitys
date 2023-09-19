@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SimpleApp</string>
+    <string name="click_me">Napauta minua</string>
+    <string name="hello_from_code">Hei koodista</string>
+    <string name="button_clicked">Nappi painettu</string>
+</resources>
