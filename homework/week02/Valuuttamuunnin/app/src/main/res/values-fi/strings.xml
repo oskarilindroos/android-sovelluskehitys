@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Valuuttamuunnin</string>
+    <string name="settings">Asetukset</string>
+    <string name="convert">Muunna</string>
+    <string name="source_currency">Lähdevaluutta</string>
+    <string name="destination_currency">Kohdevaluutta</string>
+    <string name="name">Nimi</string>
+    <string name="conversion_rate">Valuuttakurssi</string>
+</resources>
