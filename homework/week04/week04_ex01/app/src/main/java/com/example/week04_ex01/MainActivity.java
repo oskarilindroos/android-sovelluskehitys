@@ -2,8 +2,10 @@ package com.example.week04_ex01;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -47,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
             searchGames(searchQuery);
             return false;
         });
+    }
+
+    public void openWebpage(View view) {
+        String url = "https://www.igdb.com/";
+        Uri webpage = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        startActivity(intent);
     }
 
     private void getApiAccessToken() {
