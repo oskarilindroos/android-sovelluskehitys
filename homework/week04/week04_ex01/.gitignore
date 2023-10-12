@@ -55,5 +55,3 @@ app/release/output.json
 .idea/codeStyles/
 
 local.properties
-gradle.properties
-/app/
