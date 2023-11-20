@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GameReleaseHelper</string>
+    <string name="searchHint">Etsi tulevaa peliä...</string>
+    <string name="reply_title">Otsikko</string>
+    <string name="noSearchResults">Ei hakutuloksia hakusanalle \"%1$s\".</string>
+    <string name="errorText">Virhe: %1$s</string>
+</resources>
