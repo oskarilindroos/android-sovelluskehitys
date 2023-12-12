@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
         authService.requestAccessToken(new AuthService.AuthCallback() {
             @Override
             public void onTokenReceived(AccessToken token) {
-                // Search for games when the user presses the enter key
                 searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    // Search for games when the user presses the enter key
                     @Override
                     public boolean onQueryTextSubmit(String query) {
                         errorTextView.setVisibility(TextView.INVISIBLE);
@@ -77,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
 
+                    // Delay search until user has stopped typing for 500ms
                     @Override
                     public boolean onQueryTextChange(String query) {
-                        // Delay search until user has stopped typing for 500ms
                         handler.removeCallbacksAndMessages(null);
                         handler.postDelayed(new Runnable() {
                             @Override

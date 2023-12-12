@@ -67,49 +67,49 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-            Game game = games.get(position);
+        Game game = games.get(position);
 
-            viewHolder.gameNameTextView.setText(game.getName());
+        viewHolder.gameNameTextView.setText(game.getName());
 
-            // Convert UNIX timestamp to date string
-            Instant instant = Instant.ofEpochSecond(game.getFirstReleaseDate());
-            LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-            String formattedDate = localDateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        // Convert UNIX timestamp to date string
+        Instant instant = Instant.ofEpochSecond(game.getFirstReleaseDate());
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        String formattedDate = localDateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
 
-            // Calculate days until release
-            long daysUntilRelease = ChronoUnit.DAYS.between(LocalDateTime.now(), localDateTime);
-            String daysUntilString;
+        // Calculate days until release
+        long daysUntilRelease = ChronoUnit.DAYS.between(LocalDateTime.now(), localDateTime);
+        String daysUntilString;
 
-            if (daysUntilRelease == 0) {
-                daysUntilString = "today";
-            } else if (daysUntilRelease == 1) {
-                daysUntilString = daysUntilRelease + " day";
-            } else {
-                daysUntilString = daysUntilRelease + " days";
-            }
-            viewHolder.gameReleaseDateTextView.setText(formattedDate + " (" + daysUntilString + ")");
+        if (daysUntilRelease == 0) {
+            daysUntilString = "today";
+        } else if (daysUntilRelease == 1) {
+            daysUntilString = daysUntilRelease + " day";
+        } else {
+            daysUntilString = daysUntilRelease + " days";
+        }
+        viewHolder.gameReleaseDateTextView.setText(formattedDate + " (" + daysUntilString + ")");
 
-            viewHolder.addToCalendarButton.setOnClickListener(v -> {
-                Intent intent = new Intent(Intent.ACTION_INSERT)
+        // Add game release date to calendar
+        viewHolder.addToCalendarButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_INSERT)
                     .setData(CalendarContract.Events.CONTENT_URI)
                     .putExtra(CalendarContract.Events.TITLE, game.getName())
                     .putExtra(CalendarContract.Events.DESCRIPTION, "Game release date")
                     .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, game.getFirstReleaseDate() * 1000)
-                        .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, game.getFirstReleaseDate() * 1000);
+                    .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, game.getFirstReleaseDate() * 1000);
 
-                if (intent.resolveActivity(viewHolder.context.getPackageManager()) != null)
-                {
-                    viewHolder.context.startActivity(intent);
-                } else {
-                    Toast.makeText(viewHolder.context, "No calendar app found", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            // Set game cover image
-            if (game.getCover() != null) {
-                String coverUrl = "https://images.igdb.com/igdb/image/upload/t_cover_big/" + game.getCover().getImageID() + ".png";
-                Glide.with(viewHolder.itemView.getContext()).load(coverUrl).into(viewHolder.gameCoverImageView);
+            if (intent.resolveActivity(viewHolder.context.getPackageManager()) != null) {
+                viewHolder.context.startActivity(intent);
+            } else {
+                Toast.makeText(viewHolder.context, "No calendar app found", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        // Set game cover image
+        if (game.getCover() != null) {
+            String coverUrl = "https://images.igdb.com/igdb/image/upload/t_cover_big/" + game.getCover().getImageID() + ".png";
+            Glide.with(viewHolder.itemView.getContext()).load(coverUrl).into(viewHolder.gameCoverImageView);
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -119,8 +119,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
     }
 
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView)
-    {
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
 }
